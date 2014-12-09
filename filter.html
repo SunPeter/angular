@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="root">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="ventor/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="ctl">
+    <h2>{{text | ssd}}</h2>
+</div>
+</body>
+<script>
+    angular.module("root",[]).
+            controller('ctl',["$scope",function($scope){
+                $scope.text=5;
+            }]).
+            filter("ssd",function(){
+                return function(text){
+                    return text+"ssd";
+                }
+            });
+</script>
+</html>

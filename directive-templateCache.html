@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="root">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="ventor/angular.min.js"></script>
+</head>
+<body>
+    <hello></hello>
+    <p hello></p>
+    <p class="hello"></p>
+    <!--directive:hello-->
+    <div></div>
+
+    <cache></cache>
+</body>
+<script>
+    var module=angular.module("root",[]);
+    module.directive("hello",function(){
+        return{
+            restrict:"AECM",
+            template:"<h1>ssd</h1>",
+            replace:true
+        }
+    });
+
+    module.run(function($templateCache){
+        $templateCache.put("cache.html","<div>cache</div>")
+    });
+    module.directive("cache",function($templateCache){
+        return{
+            restrict:"AECM",
+            template:$templateCache.get("cache.html")
+        }
+    });
+</script>
+</html>

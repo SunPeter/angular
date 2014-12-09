@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="root">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="ventor/angular.min.js"></script>
+    <script src="ventor/angular-route.min.js"></script>
+</head>
+<body>
+<div ng-view></div>
+</body>
+<script>
+    angular.module("root",['ngRoute']).
+            controller('part1',["$scope","$location",function($scope,$location){
+                $scope.text=1;
+               
+                 $scope.$on('$viewContentLoaded', function () {
+
+                      console.log("path:"+$location.path());
+                      console.log("absUrl:"+$location.absUrl());
+                      console.log("hash:"+$location.hash());
+                      console.log("search:"+JSON.stringify($location.search()));
+                      console.log("url:"+$location.url());
+                 });
+            }]).
+            controller('part2',["$scope","$location",function($scope,$location){
+                $scope.text=2;
+                $scope.$on('$viewContentLoaded', function () {
+                     console.log($scope.$parent.location);
+
+                      console.log($location.path());
+                      $scope.$parent.location=$location.path();
+                 });
+            }]).
+            config(function($routeProvider){
+                $routeProvider.when("/part1",{
+                    templateUrl:'tpl/part1.html',
+                    controller:'part1'
+                }).when("/part2",{
+                    templateUrl:'tpl/part2.html',
+                    controller:'part2'
+                }).otherwise({
+                    redirectTo: '/part1'
+                });
+            })
+</script>
+</html>

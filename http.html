@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="root">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="ventor/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="ctl">
+</div>
+</body>
+<script>
+    angular.module("root",[]).
+            controller('ctl',["$scope","$http",function($scope,$http){
+                $http({
+                    method:"get",
+                    url:"data/name.json",
+                    cache:true //缓存响应
+                }).success(function(data, status, headers, config){
+                    console.log(headers());
+                    console.log(data);
+                }).error(function(data, status, headers, config){
+                    console.log(data);
+                });
+            }])
+</script>
+</html>

@@ -1,0 +1,36 @@
+
+<html ng-app>
+<head>
+    <title>angular.js</title>
+    <script src="ventor/angular.min.js"></script>
+    <style>
+
+        .error{
+            color: #ACF;
+        }
+        .wran{
+            color: #FAC;
+        }
+    </style>
+</head>
+<body>
+<input type="text" name="" id="" ng-model="name"/>
+<div ng-bind="name"></div>
+
+<div ng-controller="DemoCtl">
+    <input type="text" name="" id="" ng-model="name"/>
+    <input type="text" ng-change="getName()" ng-model="name1"/>
+    <div ng-class="{error:name,warn:name1}">{{name}}</div>
+</div>
+</body>
+
+<script>
+    function DemoCtl($scope){
+        $scope.name=true;
+        $scope.name1=false;
+        $scope.getName=function(){
+            $scope.name=$scope.name1;
+        }
+    }
+</script>
+</html>
